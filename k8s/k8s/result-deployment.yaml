@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: po-lin-result
+  namespace: po-lin-dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: po-lin-result
+  template:
+    metadata:
+      labels:
+        app: po-lin-result
+    spec:
+      containers:
+      - name: redis-container
+        image: po-lin/lab-result:1.0
+        ports:
+        - containerPort: 3000
+          protocol: TCP
