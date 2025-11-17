@@ -26,7 +26,8 @@ jobs:
           sudo mv /tmp/eksctl /usr/local/bin
 
       - name: Update Kubeconfig
-        run: eksctl utils write-kubeconfig --cluster ironhack-main --region eu-east-2
+      #  run: eksctl utils write-kubeconfig --cluster ironhack-main --region eu-east-2
+         run: aws eks update-kubeconfig --name ironhack-main --region us-east-2
 
       - name: Apply Kubernetes Manifests
         run: kubectl apply -f K8s/
