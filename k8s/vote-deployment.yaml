@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: po-lin-vote-deployment
+  namespace: demo-po-lin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: po-lin-vote
+  template:
+    metadata:
+      labels:
+        app: po-lin-vote
+    spec:
+      containers:
+      - name: vote-container
+        image: barberry/vote:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        env:
+          - name: REDIS_HOST
+            value: po-lin-redis-service

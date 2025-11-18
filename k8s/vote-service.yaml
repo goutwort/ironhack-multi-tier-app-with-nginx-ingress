@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: po-lin-vote
+  name: po-lin-vote-service
+  namespace: demo-po-lin
 spec:
   selector:
     app: po-lin-vote
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 80
+      targetPort: 80
       protocol: TCP
   type: ClusterIP

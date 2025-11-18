@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: po-lin-postgresql
-  namespace: po-lin-dev
+  name: po-lin-redis
+  namespace: demo-po-lin
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: po-lin-postgresql
+      app: po-lin-redis
   template:
     metadata:
       labels:
-        app: po-lin-postgresql
+        app: po-lin-redis
     spec:
       containers:
       - name: redis-container
-        image: po-lin/lab-postgresql:1.0
+        image: redis:latest
         ports:
         - containerPort: 3000
           protocol: TCP

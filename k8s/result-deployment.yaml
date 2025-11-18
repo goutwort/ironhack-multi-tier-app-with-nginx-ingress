@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: po-lin-result
+  namespace: demo-po-lin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: po-lin-result
+  template:
+    metadata:
+      labels:
+        app: po-lin-result
+    spec:
+      containers:
+      - name: result-container
+        image: barberry/result:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        env:
+          - name: PG_HOST
+            value: po-lin-postgresql-service
+          - name: PG_PORT
+            value: "5432"
+          - name: PG_USER
+            value: postgres
+          - name: PG_PASSWORD
+            value: postgres
+          - name: PG_DATABASE
+            value: postgres
+            

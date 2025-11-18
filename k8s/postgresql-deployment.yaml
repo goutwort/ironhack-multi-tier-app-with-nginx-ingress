@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: po-lin-postgresql
+  namespace: demo-po-lin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: po-lin-postgresql
+  template:
+    metadata:
+      labels:
+        app: po-lin-postgresql
+    spec:
+      containers:
+      - name: postgresql-container
+        image: postgres
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        env:
+          - name: POSTGRES_DB
+            value: postgres
+          - name: POSTGRES_DATABASE
+            value: postgres
+          - name: POSTGRES_USERNAME
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: postgres

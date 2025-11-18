@@ -1,13 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-ingress
+  name: po-lin-vote-ingress
+  namespace: vote-ingress
 spec:
   rules:
-    - host: result.app.po-lin.diogohack.shop
+    - host: vote.app.po-lin.diogohack.shop
       http:
         paths:
-          - path: /result
+          - path: /vote
             pathType: Prefix
             backend:
               service:

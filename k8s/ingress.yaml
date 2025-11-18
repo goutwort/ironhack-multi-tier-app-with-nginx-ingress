@@ -1,23 +1,29 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-ingress
+  name: voting-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
 spec:
+  ingressClassName: "nginx"
   rules:
-    - host: app.po-lin.diogohack.shop
-      http:
+    - host: vote.po-lin.diogohack.shop
+      http: 
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: frontend-service
+                name: po-lin-vote-service
                 port:
                   number: 80
-          - path: /api
+    - host: result.po-lin.diogohack.shop
+      http: 
+        paths:
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: backend-service
+                name: po-lin-result-service
                 port:
-                  number: 3000
+                  number: 80
